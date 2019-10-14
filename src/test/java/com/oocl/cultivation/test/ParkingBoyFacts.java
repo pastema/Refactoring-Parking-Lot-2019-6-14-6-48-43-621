@@ -12,7 +12,6 @@ import static com.sun.org.apache.xerces.internal.util.PropertyState.is;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ParkingBoyFacts {
-    //------------------------------------------------------------------- STORY 1//
     @Test
     void should_get_parking_ticket_when_parking_boy_parks_car_to_parking_lot() {
         ParkingLot parkingLot = new ParkingLot();
@@ -50,13 +49,12 @@ class ParkingBoyFacts {
 
     @Test
     void should_customer_give_wrong_ticket_or_does_not_give_a_ticket_then_car_should_not_be_fetched() {
-        ParkingTicket parkingTicket = new ParkingTicket();
         ParkingTicket parkingTicket2 = new ParkingTicket();
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         Car car = new Car();
 
-        parkingTicket = parkingBoy.park(car);
+        parkingBoy.park(car);
         car = parkingBoy.fetch(parkingTicket2);
         assertNull(car);
     }
@@ -65,11 +63,11 @@ class ParkingBoyFacts {
     void should_customer_give_ticket_that_already_exists_then_no_car_should_be_fetched() {
         ParkingLot parkingLot = new ParkingLot();
         Car car = new Car();
-        Car car2 = new Car();
+        Car car2;
 
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         ParkingTicket parkingTicket = parkingBoy.park(car);
-        car = parkingBoy.fetch(parkingTicket);
+        parkingBoy.fetch(parkingTicket);
         car2 = parkingBoy.fetch(parkingTicket);
 
         assertNull(car2);
@@ -91,7 +89,7 @@ class ParkingBoyFacts {
 
 
 
-    //------------------------------------------------------------------- STORY 2//
+//======================================================================================================================
 
 
 
@@ -101,9 +99,9 @@ class ParkingBoyFacts {
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
 
         Car car = new Car();
-        ParkingTicket originalParkingTicket = parkingBoy.park(car);
+        parkingBoy.park(car);
         ParkingTicket fakeParkingTicket = parkingBoy.park(car);
-        car = parkingBoy.fetch(fakeParkingTicket);
+        parkingBoy.fetch(fakeParkingTicket);
         String getParkingBoyMessage = parkingBoy.IsValidTicket(fakeParkingTicket,parkingLot);
 
         assertEquals(getParkingBoyMessage, "Unrecognized parking ticket.");
@@ -140,14 +138,13 @@ class ParkingBoyFacts {
 
 
 
-    //------------------------------------------------------------------- STORY 3//
+//======================================================================================================================
 
 
 
     @Test
     void should_parking_boy_will_park_cars_to_the_second_parking_lot_when_the_first_parking_lot_is_full() {
         ParkingLot parkingLot = new ParkingLot();
-        ParkingLot parkingLot2 = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         IntStream.rangeClosed(0,9).forEach(number ->{
             Car car = new Car();

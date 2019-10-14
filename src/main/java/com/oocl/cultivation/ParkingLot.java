@@ -6,6 +6,7 @@ import java.util.Map;
 public class ParkingLot {
     private final int capacity;
     private Map<ParkingTicket, Car> cars = new HashMap<>();
+    private  String notEnoughPositionMessage = "Not enough position.";
     Car myCar;
 
     public ParkingLot() {
@@ -51,6 +52,6 @@ public class ParkingLot {
         if(getAvailableParkingPosition() < 0){
             return "";
         }
-        return "Not enough position.";
+        return notEnoughPositionMessage;
     }
 }

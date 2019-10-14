@@ -3,7 +3,8 @@ package com.oocl.cultivation;
 public class ParkingBoy {
 
     private final ParkingLot parkingLot;
-    private String lastErrorMessage;
+    private  String provideParkingTicketMessage = "Please provide your parking ticket.";
+    private  String validTicketMessage = "Unrecognized parking ticket.";
 
     public ParkingBoy(ParkingLot parkingLot) {
         this.parkingLot = parkingLot;
@@ -17,16 +18,12 @@ public class ParkingBoy {
         return parkingLot.getCar(ticket);
     }
 
-    public String getLastErrorMessage() {
-        return lastErrorMessage;
-    }
-
     public String IsValidTicket(ParkingTicket parkingTicket, ParkingLot parkingLot) {
         if(parkingTicket == null){
-            return lastErrorMessage = "Please provide your parking ticket.";
+            return provideParkingTicketMessage;
         }
-        if(parkingLot.IsValidTicket(parkingTicket) == null) {
-            return lastErrorMessage = "Unrecognized parking ticket.";
+        else if(parkingLot.IsValidTicket(parkingTicket) == null) {
+            return validTicketMessage;
         }
         return "";
     }
